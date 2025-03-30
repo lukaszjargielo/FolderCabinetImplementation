@@ -1,4 +1,4 @@
-package pl.horus.model.classe;
+package pl.horus.model.classes;
 
 import pl.horus.model.interfaces.Cabinet;
 import pl.horus.model.interfaces.Folder;
