@@ -78,6 +78,17 @@ private MultiFolder folderContainer5;
     }
 
     @Test
+    void findFolderByName_2_folders() {
+        Optional<Folder> foundFolder = folderCabinet2.findFolderByName("FOURTHFILECONTAINER");
+        assertTrue(foundFolder.isPresent());
+        assertEquals("FourthFileContainer", foundFolder.get().getName());
+
+        Optional<Folder> notFoundFolder = folderCabinet1.findFolderByName("SecondFileContainer");
+        assertFalse(notFoundFolder.isPresent());
+    }
+
+
+    @Test
     void findFoldersBySize() {
     }
 
