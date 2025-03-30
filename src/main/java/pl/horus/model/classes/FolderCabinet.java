@@ -27,4 +27,12 @@ public class FolderCabinet implements Cabinet {
     public int count() {
         return folders.size();
     }
+
+    public List<Folder> getFolders() {
+        return folders;
+    }
+
+    public void setFolders(List<Folder> folders) {
+        this.folders = folders;
+    }
 }
