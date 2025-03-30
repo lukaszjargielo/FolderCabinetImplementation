@@ -2,6 +2,7 @@ package pl.horus.model.classes;
 
 import pl.horus.model.interfaces.Cabinet;
 import pl.horus.model.interfaces.Folder;
+import pl.horus.model.interfaces.MultiFolder;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,9 +12,7 @@ public class FolderCabinet implements Cabinet {
 
     @Override
     public Optional<Folder> findFolderByName(String name) {
-        return folders.stream()
-                .filter(folder -> folder.getName().equalsIgnoreCase(name))
-                .findFirst();
+        return findFolderByNameInSubdirectories(folders, name);
     }
 
     @Override
@@ -34,5 +33,20 @@ public class FolderCabinet implements Cabinet {
 
     public void setFolders(List<Folder> folders) {
         this.folders = folders;
+    }
+
+    private Optional<Folder> findFolderByNameInSubdirectories(List<Folder> folders, String name) {
+        for (Folder folder : folders) {
+            if (folder.getName().equalsIgnoreCase(name)) {
+                return Optional.of(folder);
+            }
+            if (folder instanceof MultiFolder) {
+                Optional<Folder> foundFolder = findFolderByNameInSubdirectories(((MultiFolder) folder).getFolders(), name);
+                if (foundFolder.isPresent()) {
+                    return foundFolder;
+                }
+            }
+        }
+        return Optional.empty();
     }
 }
