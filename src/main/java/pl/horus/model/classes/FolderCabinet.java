@@ -24,7 +24,8 @@ public class FolderCabinet implements Cabinet {
 
     @Override
     public int count() {
-        return folders.size();
+
+        return countInSubdirectories(folders);
     }
 
     public List<Folder> getFolders() {
@@ -60,5 +61,16 @@ public class FolderCabinet implements Cabinet {
             }
         }
         return foundFolders;
+    }
+
+    private int countInSubdirectories(List<Folder> folders) {
+        int counter = folders.size();
+        for (Folder folder : folders) {
+            if (folder instanceof MultiFolder) {
+                MultiFolder multifolder = (MultiFolder) folder;
+                counter += countInSubdirectories(multifolder.getFolders());
+            }
+        }
+        return counter;
     }
 }
