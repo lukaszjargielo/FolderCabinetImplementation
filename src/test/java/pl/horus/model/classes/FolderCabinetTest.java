@@ -101,6 +101,9 @@ private MultiFolder folderContainer5;
         List<Folder> foundFolders = folderCabinet1.findFoldersBySize("sMaLl");
         assertTrue(foundFolders.stream().allMatch(folder -> folder.getSize().equalsIgnoreCase("SMALL")));
         assertEquals(1, foundFolders.size());
+
+        List<Folder> nonExistentFolders = folderCabinet1.findFoldersBySize("BIG");
+        assertFalse(nonExistentFolders.size() == 1);
     }
 
     @Test
@@ -108,6 +111,9 @@ private MultiFolder folderContainer5;
         List<Folder> foundFolders = folderCabinet2.findFoldersBySize("small");
         assertTrue(foundFolders.stream().allMatch(folder -> folder.getSize().equalsIgnoreCase("SMALL")));
         assertEquals(1, foundFolders.size());
+
+        List<Folder> nonExistentFolders = folderCabinet1.findFoldersBySize("Huge");
+        assertFalse(nonExistentFolders.size() == 1);
     }
 
     @Test
@@ -115,6 +121,9 @@ private MultiFolder folderContainer5;
         List<Folder> foundFolders = folderCabinet3.findFoldersBySize("SMALL");
         assertTrue(foundFolders.stream().allMatch(folder -> folder.getSize().equalsIgnoreCase("SMALL")));
         assertEquals(7, foundFolders.size());
+
+        List<Folder> nonExistentFolders = folderCabinet1.findFoldersBySize("Tiny");
+        assertFalse(nonExistentFolders.size() == 1);
     }
 
     @Test
