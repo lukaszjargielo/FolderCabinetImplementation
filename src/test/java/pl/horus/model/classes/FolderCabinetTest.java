@@ -97,7 +97,10 @@ private MultiFolder folderContainer5;
         assertFalse(notFoundFolder.isPresent());
     }
     @Test
-    void findFoldersBySize() {
+    void findFoldersBySize_non_nested_folder() {
+        List<Folder> foundFolders = folderCabinet1.findFoldersBySize("sMaLl");
+        assertTrue(foundFolders.stream().allMatch(folder -> folder.getSize().equalsIgnoreCase("SMALL")));
+        assertEquals(1, foundFolders.size());
     }
 
     @Test
