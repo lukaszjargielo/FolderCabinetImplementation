@@ -136,4 +136,15 @@ private MultiFolder folderContainer5;
        int folderListSize = folderCabinet1.getFolders().size();
        assertFalse(folderListSize < counter);
     }
+
+    @Test
+    void count_single_nested_folder() {
+
+
+        int counter = folderCabinet2.count();
+        assertEquals(2,counter);
+
+        int folderListSize = folderCabinet1.getFolders().size();
+        assertFalse(folderListSize < counter);
+    }
 }
