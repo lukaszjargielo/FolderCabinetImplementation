@@ -68,7 +68,7 @@ private MultiFolder folderContainer5;
 
 
     @Test
-    void findFolderByName_1_folder() {
+    void findFolderByName_non_nested_folder() {
         Optional<Folder> foundFolder = folderCabinet1.findFolderByName("firstFileCONTAINER");
         assertTrue(foundFolder.isPresent());
         assertEquals("FirstFileContainer", foundFolder.get().getName());
@@ -78,16 +78,24 @@ private MultiFolder folderContainer5;
     }
 
     @Test
-    void findFolderByName_2_folders() {
+    void findFolderByName_single_nested_folder() {
         Optional<Folder> foundFolder = folderCabinet2.findFolderByName("FOURTHFILECONTAINER");
         assertTrue(foundFolder.isPresent());
         assertEquals("FourthFileContainer", foundFolder.get().getName());
 
-        Optional<Folder> notFoundFolder = folderCabinet1.findFolderByName("SecondFileContainer");
+        Optional<Folder> notFoundFolder = folderCabinet2.findFolderByName("SecondFileContainer");
         assertFalse(notFoundFolder.isPresent());
     }
 
+    @Test
+    void findFolderByName_double_nested_folder() {
+        Optional<Folder> foundFolder = folderCabinet3.findFolderByName("seventhfilecontainer");
+        assertTrue(foundFolder.isPresent());
+        assertEquals("SeventhFileContainer", foundFolder.get().getName());
 
+        Optional<Folder> notFoundFolder = folderCabinet1.findFolderByName("RandomFileContainer");
+        assertFalse(notFoundFolder.isPresent());
+    }
     @Test
     void findFoldersBySize() {
     }
