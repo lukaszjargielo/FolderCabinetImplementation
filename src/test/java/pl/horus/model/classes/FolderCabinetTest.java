@@ -6,6 +6,7 @@ import pl.horus.model.interfaces.Folder;
 import pl.horus.model.interfaces.MultiFolder;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,22 +49,12 @@ private MultiFolder folderContainer5;
         folderContainer4 = new FolderContainer(List.of(fileContainer3, folderContainer2, folderContainer3), "FourthFolderContainer", "LARGE");
         folderContainer5 = new FolderContainer(List.of(fileContainer1,folderContainer1, folderContainer4), "FifthFolderContainer", "LARGE");
 
-        folderCabinet1 = new FolderCabinet();
-        List<Folder> folders = new ArrayList<>();
-        folders.add(fileContainer1);
-        folderCabinet1.setFolders(folders);
+        folderCabinet1 = new FolderCabinet(Arrays.asList(fileContainer1));
 
-        folderCabinet2 = new FolderCabinet();
-        folders = new ArrayList<>();
-        folders.add(folderContainer2);
-        folderCabinet2.setFolders(folders);
+        folderCabinet2 = new FolderCabinet(Arrays.asList(folderContainer2));
 
-        folderCabinet3 = new FolderCabinet();
-        folders = new ArrayList<>();
-        folders.add(fileContainer1);
-        folders.add(folderContainer1);
-        folders.add( folderContainer4);
-        folderCabinet3.setFolders(folders);
+        folderCabinet3 = new FolderCabinet(Arrays.asList(fileContainer1, folderContainer1, folderContainer4));
+
     }
 
 

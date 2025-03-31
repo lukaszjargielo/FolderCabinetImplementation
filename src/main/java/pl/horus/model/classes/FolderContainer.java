@@ -1,10 +1,19 @@
 package pl.horus.model.classes;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import pl.horus.model.interfaces.Folder;
 import pl.horus.model.interfaces.MultiFolder;
 
 import java.util.ArrayList;
 import java.util.List;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@ToString
 
 public class FolderContainer implements MultiFolder {
     private List<Folder> folders;
@@ -16,7 +25,7 @@ public class FolderContainer implements MultiFolder {
         this.name = "unnamed";
         this.size = "undefined";
     }
-
+/*
     public FolderContainer(List<Folder> folders, String name, String size) {
         this.folders = folders;
         this.name = name;
@@ -48,5 +57,5 @@ public class FolderContainer implements MultiFolder {
 
     public void setSize(String size) {
         this.size = size;
-    }
+    }*/
 }

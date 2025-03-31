@@ -1,5 +1,9 @@
 package pl.horus.model.classes;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import pl.horus.model.interfaces.Cabinet;
 import pl.horus.model.interfaces.Folder;
 import pl.horus.model.interfaces.MultiFolder;
@@ -8,8 +12,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Getter
+@Setter
+@ToString
+
 public class FolderCabinet implements Cabinet {
     private List<Folder> folders;
+
+    public FolderCabinet() {
+        this.folders = new ArrayList<>();
+    }
+
+    public FolderCabinet(List<Folder> folders) {
+       this.folders = new ArrayList<>(folders);
+    }
 
     @Override
     public Optional<Folder> findFolderByName(String name) {
@@ -24,17 +40,16 @@ public class FolderCabinet implements Cabinet {
 
     @Override
     public int count() {
-
         return countInSubdirectories(folders);
     }
 
-    public List<Folder> getFolders() {
+  /*  public List<Folder> getFolders() {
         return folders;
     }
 
     public void setFolders(List<Folder> folders) {
         this.folders = folders;
-    }
+    }*/
 
     private Optional<Folder> findFolderByNameInSubdirectories(List<Folder> folders, String name) {
         for (Folder folder : folders) {
