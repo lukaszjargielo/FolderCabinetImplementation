@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import pl.horus.model.interfaces.Folder;
 import pl.horus.model.interfaces.MultiFolder;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -59,68 +58,66 @@ private MultiFolder folderContainer5;
 
 
     @Test
-    void findFolderByName_non_nested_folder() {
-        Optional<Folder> foundFolder = folderCabinet1.findFolderByName("firstFileCONTAINER");
+    void findFolderByName_non_nested_folder_case_sensitive() {
+        Optional<Folder> foundFolder = folderCabinet1.findFolderByName("FirstFileContainer");
         assertTrue(foundFolder.isPresent());
         assertEquals("FirstFileContainer", foundFolder.get().getName());
 
-        Optional<Folder> notFoundFolder = folderCabinet1.findFolderByName("SecondFileContainer");
+        Optional<Folder> notFoundFolder = folderCabinet1.findFolderByName("firstFileCONTAINER");
         assertFalse(notFoundFolder.isPresent());
     }
 
     @Test
-    void findFolderByName_single_nested_folder() {
-        Optional<Folder> foundFolder = folderCabinet2.findFolderByName("FOURTHFILECONTAINER");
+    void findFolderByName_single_nested_folder_case_sensitive() {
+        Optional<Folder> foundFolder = folderCabinet2.findFolderByName("FourthFileContainer");
         assertTrue(foundFolder.isPresent());
         assertEquals("FourthFileContainer", foundFolder.get().getName());
 
-        Optional<Folder> notFoundFolder = folderCabinet2.findFolderByName("SecondFileContainer");
+        Optional<Folder> notFoundFolder = folderCabinet2.findFolderByName("FOURTHFILECONTAINER");
         assertFalse(notFoundFolder.isPresent());
     }
 
     @Test
-    void findFolderByName_double_nested_folder() {
-        Optional<Folder> foundFolder = folderCabinet3.findFolderByName("seventhfilecontainer");
+    void findFolderByName_double_nested_folder_case_sensitive() {
+        Optional<Folder> foundFolder = folderCabinet3.findFolderByName("SeventhFileContainer");
         assertTrue(foundFolder.isPresent());
         assertEquals("SeventhFileContainer", foundFolder.get().getName());
 
-        Optional<Folder> notFoundFolder = folderCabinet1.findFolderByName("RandomFileContainer");
+        Optional<Folder> notFoundFolder = folderCabinet1.findFolderByName("seventhfilecontaine");
         assertFalse(notFoundFolder.isPresent());
     }
     @Test
-    void findFoldersBySize_non_nested_folder() {
-        List<Folder> foundFolders = folderCabinet1.findFoldersBySize("sMaLl");
+    void findFoldersBySize_non_nested_folder_case_sensitive() {
+        List<Folder> foundFolders = folderCabinet1.findFoldersBySize("SMALL");
         assertTrue(foundFolders.stream().allMatch(folder -> folder.getSize().equalsIgnoreCase("SMALL")));
         assertEquals(1, foundFolders.size());
 
-        List<Folder> nonExistentFolders = folderCabinet1.findFoldersBySize("BIG");
+        List<Folder> nonExistentFolders = folderCabinet1.findFoldersBySize("sMaLl");
         assertFalse(nonExistentFolders.size() == 1);
     }
 
     @Test
-    void findFoldersBySize_single_nested_folder() {
-        List<Folder> foundFolders = folderCabinet2.findFoldersBySize("small");
+    void findFoldersBySize_single_nested_folder_case_sensitive() {
+        List<Folder> foundFolders = folderCabinet2.findFoldersBySize("SMALL");
         assertTrue(foundFolders.stream().allMatch(folder -> folder.getSize().equalsIgnoreCase("SMALL")));
         assertEquals(1, foundFolders.size());
 
-        List<Folder> nonExistentFolders = folderCabinet1.findFoldersBySize("Huge");
+        List<Folder> nonExistentFolders = folderCabinet1.findFoldersBySize("small");
         assertFalse(nonExistentFolders.size() == 1);
     }
 
     @Test
-    void findFoldersBySize_double_nested_folder() {
+    void findFoldersBySize_double_nested_folder_case_sensitive() {
         List<Folder> foundFolders = folderCabinet3.findFoldersBySize("SMALL");
         assertTrue(foundFolders.stream().allMatch(folder -> folder.getSize().equalsIgnoreCase("SMALL")));
         assertEquals(7, foundFolders.size());
 
-        List<Folder> nonExistentFolders = folderCabinet1.findFoldersBySize("Tiny");
+        List<Folder> nonExistentFolders = folderCabinet1.findFoldersBySize("sMaLl");
         assertFalse(nonExistentFolders.size() == 1);
     }
 
     @Test
     void count_non_nested_folder() {
-
-
         int counter = folderCabinet1.count();
         assertEquals(1,counter);
 
@@ -130,7 +127,6 @@ private MultiFolder folderContainer5;
 
     @Test
     void count_single_nested_folder() {
-
         int counter = folderCabinet2.count();
         assertEquals(2,counter);
 
@@ -140,7 +136,6 @@ private MultiFolder folderContainer5;
 
     @Test
     void count_double_nested_folder() {
-
         int counter = folderCabinet3.count();
         assertEquals(11,counter);
 

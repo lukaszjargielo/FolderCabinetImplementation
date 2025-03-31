@@ -42,7 +42,7 @@ public class FolderCabinet implements Cabinet {
 
     private Optional<Folder> findFolderByNameInSubdirectories(List<Folder> folders, String name) {
         for (Folder folder : folders) {
-            if (folder.getName().equalsIgnoreCase(name)) {
+            if (folder.getName().equals(name)) {
                 return Optional.of(folder);
             }
             if (folder instanceof MultiFolder) {
@@ -57,7 +57,7 @@ public class FolderCabinet implements Cabinet {
 
     private List<Folder> findFolderBySizeInSubdirectories(List<Folder> folders, String size, List<Folder> foundFolders) {
         for(Folder folder : folders) {
-            if(folder.getSize().equalsIgnoreCase(size)) {
+            if(folder.getSize().equals(size)) {
                 foundFolders.add(folder);
             }
             if (folder instanceof MultiFolder) {
