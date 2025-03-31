@@ -32,3 +32,6 @@ interface MultiFolder extends Folder {
 List<Folder> getFolders();
 }
 ```
+**Attention!!! findFolderBySize(String size) and findFolderByName(String name) methods are CASE SENSITIVE!!!**
+
+In the resources directory, there is schema of test object content.
