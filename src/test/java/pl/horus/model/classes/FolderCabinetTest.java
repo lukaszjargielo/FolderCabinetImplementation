@@ -104,6 +104,13 @@ private MultiFolder folderContainer5;
     }
 
     @Test
+    void findFoldersBySize_single_nested_folder() {
+        List<Folder> foundFolders = folderCabinet2.findFoldersBySize("small");
+        assertTrue(foundFolders.stream().allMatch(folder -> folder.getSize().equalsIgnoreCase("SMALL")));
+        assertEquals(1, foundFolders.size());
+    }
+
+    @Test
     void count() {
     }
 }
